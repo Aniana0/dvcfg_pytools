@@ -12,7 +12,8 @@ DeepVocal ToolBox의 'Voice Config'에서 할 수 있는 작업을 파이썬에�
 * **주의사항(?)**     
 제작자가 코딩을 학교 교양강의에서 매우 기초만 살짝 배우고 나머지는 독학으로 배운 사람입니다...   
 따라서 용어를 잘못 사용하거나 설명이 이상할 수도 있습니다...   
-학업때문에 바빠서 업데이트가 느릴 수 있습니다.
+학업때문에 바빠서 업데이트가 느릴 수 있습니다.   
+**English version README is being prepared...(I'm busy so I don't know when to update.)**
 
 
 ## 설치
