@@ -30,5 +30,15 @@ dvcfg_file = dvcfg_pytools.Dvcfg()
    
 dvcfg_file.load('voice.dvcfg')
 
+dvcfg_file.edit_CV('ga','C#4',1.045,1.062,1.12,1.34)
+dvcfg_file.edit_VX('a_a','F4',7.0,7.1)
+dvcfg_file.add_INDIE('voice/breath.wav','breath','C#4',0.55,1.07)
+
+dvcfg_file.save('')
 ```   
-## 메소드
+## 기본 메소드(툴박스 기능)
+### load(파일 이름)   
+voice.dvcfg 파일을 읽어들입니다
+
+### save(파일이름)
+voice.dvcfg 파일을 저장합니다
