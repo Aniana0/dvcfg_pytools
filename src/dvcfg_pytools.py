@@ -1,6 +1,6 @@
 # -*- author: 아니아나(Aniana0) aniana0gm@gmail.com -*-
 # -*- coding : utf-8 -*-
-# -*- latest update date : 2021-08-26 -*-
+# -*- latest update date(KST) : 2021-08-28 00:12 -*-
  
 import json
 import time
@@ -33,7 +33,7 @@ class Dvcfg:
 
     # .dvcfg 저장하기 | Save .dvcfg --------------------
     
-    def save(self,file_name):
+    def save(self,file_name='voice.dvcfg'):
         if file_name=='':
             file_name='voice.dvcfg'
         else:
@@ -51,65 +51,65 @@ class Dvcfg:
 
 
     # 현재 dvcfg 딕셔너리를 반환 | Return dvcfg dictionary --------------------
-    def dvcfg_dict(self):
-        return self.dvcfg_dict
+    def dvcfg_to_dict(self):
+        return self.dvcfg_dict.copy()
 
 
 
-# -------------------- 파라미터 추가 | Add parameter --------------------
+# -------------------- 발음 항목 추가 | Add symbol item --------------------
 
-    # 파라미터 추가 - CV | Add parameter - Type: CV --------------------
+    # 항목 추가 - CV | Add item - Type: CV --------------------
     def add_CV(self,wav_name,symbol,pitch,cp,pp,vsp,vep):
-        parameter_name="{0}->{1}".format(pitch,symbol)
+        item_name="{0}->{1}".format(pitch,symbol)
         startTime=cp-self.start_blank
-        self.dvcfg_dict[parameter_name]={}
-        self.dvcfg_dict[parameter_name]["wavName"]=wav_name
-        self.dvcfg_dict[parameter_name]["srcType"]="CV"
-        self.dvcfg_dict[parameter_name]["symbol"]=symbol
-        self.dvcfg_dict[parameter_name]["pitch"]=pitch
-        self.dvcfg_dict[parameter_name]["updateTime"]=time.strftime('%Y-%m-%d %H:%M:%S',tm)
-        self.dvcfg_dict[parameter_name]["connectPoint"]=self.start_blank
-        self.dvcfg_dict[parameter_name]["startTime"]=startTime
-        self.dvcfg_dict[parameter_name]["endTime"]=vep+self.start_blank
-        self.dvcfg_dict[parameter_name]["preutterance"]=pp-startTime
-        self.dvcfg_dict[parameter_name]["vowelStart"]=vsp-startTime
-        self.dvcfg_dict[parameter_name]["vowelEnd"]=vep-startTime
-        self.dvcfg_dict[parameter_name]["tailPoint"]=vep-startTime+0.054999998658895
+        self.dvcfg_dict[item_name]={}
+        self.dvcfg_dict[item_name]["wavName"]=wav_name
+        self.dvcfg_dict[item_name]["srcType"]="CV"
+        self.dvcfg_dict[item_name]["symbol"]=symbol
+        self.dvcfg_dict[item_name]["pitch"]=pitch
+        self.dvcfg_dict[item_name]["updateTime"]=time.strftime('%Y-%m-%d %H:%M:%S',tm)
+        self.dvcfg_dict[item_name]["connectPoint"]=self.start_blank
+        self.dvcfg_dict[item_name]["startTime"]=startTime
+        self.dvcfg_dict[item_name]["endTime"]=vep+self.start_blank
+        self.dvcfg_dict[item_name]["preutterance"]=pp-startTime
+        self.dvcfg_dict[item_name]["vowelStart"]=vsp-startTime
+        self.dvcfg_dict[item_name]["vowelEnd"]=vep-startTime
+        self.dvcfg_dict[item_name]["tailPoint"]=vep-startTime+0.054999998658895
 
         
-    # 파라미터 추가 - V_X | Add parameter - Type: V_X --------------------
+    # 항목 추가 - V_X | Add item - Type: V_X --------------------
     def add_VX(self,wav_name,symbol,pitch,sp,ep):
         if re.search('.*_.*',symbol):
-            parameter_name="{0}->{1}".format(pitch,symbol)
+            item_name="{0}->{1}".format(pitch,symbol)
             startTime=sp-self.start_blank
-            self.dvcfg_dict[parameter_name]={}
-            self.dvcfg_dict[parameter_name]["wavName"]=wav_name
-            self.dvcfg_dict[parameter_name]["srcType"]="VX"
-            self.dvcfg_dict[parameter_name]["symbol"]=symbol
-            self.dvcfg_dict[parameter_name]["pitch"]=pitch
-            self.dvcfg_dict[parameter_name]["updateTime"]=time.strftime('%Y-%m-%d %H:%M:%S',tm)
-            self.dvcfg_dict[parameter_name]["connectPoint"]=self.start_blank
-            self.dvcfg_dict[parameter_name]["startTime"]=startTime
-            self.dvcfg_dict[parameter_name]["endTime"]=ep+self.start_blank
-            self.dvcfg_dict[parameter_name]["tailPoint"]=ep-startTime
+            self.dvcfg_dict[item_name]={}
+            self.dvcfg_dict[item_name]["wavName"]=wav_name
+            self.dvcfg_dict[item_name]["srcType"]="VX"
+            self.dvcfg_dict[item_name]["symbol"]=symbol
+            self.dvcfg_dict[item_name]["pitch"]=pitch
+            self.dvcfg_dict[item_name]["updateTime"]=time.strftime('%Y-%m-%d %H:%M:%S',tm)
+            self.dvcfg_dict[item_name]["connectPoint"]=self.start_blank
+            self.dvcfg_dict[item_name]["startTime"]=startTime
+            self.dvcfg_dict[item_name]["endTime"]=ep+self.start_blank
+            self.dvcfg_dict[item_name]["tailPoint"]=ep-startTime
         else:
             print('기호 오류: 입력된 기호가 V_X 형식이 아닙니다. "A_B"와 같은 형태로 입력해주십시오.\nSymbol Error: The symbol you entered is not V_X. Please enter the symbol as follows: "A_B"')
 
 
-    # 파라미터 추가 - 독립기호(Independent) | Add parameter - Type: Independent --------------------
+    # 항목 추가 - 독립기호(Independent) | Add item - Type: Independent --------------------
     def add_INDIE(self,wav_name,symbol,pitch,sp,ep):
-        parameter_name="{0}->{1}".format(pitch,symbol)
+        item_name="{0}->{1}".format(pitch,symbol)
         startTime=sp-self.start_blank
-        self.dvcfg_dict[parameter_name]={}
-        self.dvcfg_dict[parameter_name]["wavName"]=wav_name
-        self.dvcfg_dict[parameter_name]["srcType"]="INDIE"
-        self.dvcfg_dict[parameter_name]["symbol"]=symbol
-        self.dvcfg_dict[parameter_name]["pitch"]=pitch
-        self.dvcfg_dict[parameter_name]["updateTime"]=time.strftime('%Y-%m-%d %H:%M:%S',tm)
-        self.dvcfg_dict[parameter_name]["startPoint"]=self.start_blank
-        self.dvcfg_dict[parameter_name]["endPoint"]=ep-startTime
-        self.dvcfg_dict[parameter_name]["startTime"]=startTime
-        self.dvcfg_dict[parameter_name]["endTime"]=ep+self.start_blank
+        self.dvcfg_dict[item_name]={}
+        self.dvcfg_dict[item_name]["wavName"]=wav_name
+        self.dvcfg_dict[item_name]["srcType"]="INDIE"
+        self.dvcfg_dict[item_name]["symbol"]=symbol
+        self.dvcfg_dict[item_name]["pitch"]=pitch
+        self.dvcfg_dict[item_name]["updateTime"]=time.strftime('%Y-%m-%d %H:%M:%S',tm)
+        self.dvcfg_dict[item_name]["startPoint"]=self.start_blank
+        self.dvcfg_dict[item_name]["endPoint"]=ep-startTime
+        self.dvcfg_dict[item_name]["startTime"]=startTime
+        self.dvcfg_dict[item_name]["endTime"]=ep+self.start_blank
 
 
 
@@ -117,86 +117,86 @@ class Dvcfg:
 
     # 마커 값 변경 - CV | Edit Markers - Type: CV --------------------
     def edit_CV(self,symbol,pitch,cp,pp,vsp,vep):
-        parameter_name="{0}->{1}".format(pitch,symbol)
-        if parameter_name in self.dvcfg_dict:
-            if self.dvcfg_dict[parameter_name]["srcType"]=="CV":
+        item_name="{0}->{1}".format(pitch,symbol)
+        if item_name in self.dvcfg_dict:
+            if self.dvcfg_dict[item_name]["srcType"]=="CV":
                 startTime=cp-self.start_blank
-                self.dvcfg_dict[parameter_name]["updateTime"]=time.strftime('%Y-%m-%d %H:%M:%S',tm)
-                self.dvcfg_dict[parameter_name]["connectPoint"]=self.start_blank
-                self.dvcfg_dict[parameter_name]["startTime"]=startTime
-                self.dvcfg_dict[parameter_name]["endTime"]=vep+self.start_blank
-                self.dvcfg_dict[parameter_name]["preutterance"]=pp-startTime
-                self.dvcfg_dict[parameter_name]["vowelStart"]=vsp-startTime
-                self.dvcfg_dict[parameter_name]["vowelEnd"]=vep-startTime
-                self.dvcfg_dict[parameter_name]["tailPoint"]=vep-startTime+0.054999998658895
+                self.dvcfg_dict[item_name]["updateTime"]=time.strftime('%Y-%m-%d %H:%M:%S',tm)
+                self.dvcfg_dict[item_name]["connectPoint"]=self.start_blank
+                self.dvcfg_dict[item_name]["startTime"]=startTime
+                self.dvcfg_dict[item_name]["endTime"]=vep+self.start_blank
+                self.dvcfg_dict[item_name]["preutterance"]=pp-startTime
+                self.dvcfg_dict[item_name]["vowelStart"]=vsp-startTime
+                self.dvcfg_dict[item_name]["vowelEnd"]=vep-startTime
+                self.dvcfg_dict[item_name]["tailPoint"]=vep-startTime+0.054999998658895
             else:
-                print("타입 오류: 이 파라미터는 CV가 아닙니다.\nType Error: The parameter's type is not CV.")
+                print("타입 오류: 이 발음은 CV가 아닙니다.\nType Error: The item's type is not CV.")
         else:
-            print('파라미터 오류: 파라미터가 존재하지 않습니다.\nParameter Error: Parameter is not exist.')
+            print('항목 오류: 발음에 해당하는 항목이 존재하지 않습니다.\nItem Error: Item is not exist.')
 
 
     # 마커 값 변경 - V_X | Edit Markers - Type: V_X --------------------
     def edit_VX(self,symbol,pitch,sp,ep):
         if re.search('.*_.*',symbol):
-            parameter_name="{0}->{1}".format(pitch,symbol)
-            if parameter_name in self.dvcfg_dict:
-                if self.dvcfg_dict[parameter_name]["srcType"]=="VX":
+            item_name="{0}->{1}".format(pitch,symbol)
+            if item_name in self.dvcfg_dict:
+                if self.dvcfg_dict[item_name]["srcType"]=="VX":
                     startTime=sp-self.start_blank
-                    self.dvcfg_dict[parameter_name]["updateTime"]=time.strftime('%Y-%m-%d %H:%M:%S',tm)
-                    self.dvcfg_dict[parameter_name]["connectPoint"]=self.start_blank
-                    self.dvcfg_dict[parameter_name]["startTime"]=startTime
-                    self.dvcfg_dict[parameter_name]["endTime"]=ep+self.start_blank
-                    self.dvcfg_dict[parameter_name]["tailPoint"]=ep-startTime
+                    self.dvcfg_dict[item_name]["updateTime"]=time.strftime('%Y-%m-%d %H:%M:%S',tm)
+                    self.dvcfg_dict[item_name]["connectPoint"]=self.start_blank
+                    self.dvcfg_dict[item_name]["startTime"]=startTime
+                    self.dvcfg_dict[item_name]["endTime"]=ep+self.start_blank
+                    self.dvcfg_dict[item_name]["tailPoint"]=ep-startTime
                 else:
-                    print("타입 오류: 이 파라미터는 V_X가 아닙니다.\nType Error: The parameter's type is not V_X.")
+                    print("타입 오류: 이 발음은 V_X가 아닙니다.\nType Error: The item's type is not V_X.")
             else:
-                print('파라미터 오류: 파라미터가 존재하지 않습니다.\nParameter Error: Parameter is not exist.')
+                print('항목 오류: 입력한 발음에 해당하는 항목이 존재하지 않습니다.\nItem Error: Item is not exist.')
         else:
             print('기호 오류: 입력된 기호가 V_X 형식이 아닙니다. "A_B"와 같은 형태로 입력해주십시오.\nSymbol Error: The symbol you entered is not V_X. Please enter the symbol as follows: "A_B"')
 
 
     # 마커 값 변경 - 독립기호(Independent) | Edit Markers - Type: Independent --------------------
     def edit_INDIE(self,symbol,pitch,sp,ep):
-        parameter_name="{0}->{1}".format(pitch,symbol)
-        if parameter_name in self.dvcfg_dict:
-            if self.dvcfg_dict[parameter_name]["srcType"]=="INDIE":
+        item_name="{0}->{1}".format(pitch,symbol)
+        if item_name in self.dvcfg_dict:
+            if self.dvcfg_dict[item_name]["srcType"]=="INDIE":
                 startTime=sp-self.start_blank
-                self.dvcfg_dict[parameter_name]["updateTime"]=time.strftime('%Y-%m-%d %H:%M:%S',tm)
-                self.dvcfg_dict[parameter_name]["startPoint"]=self.start_blank
-                self.dvcfg_dict[parameter_name]["endPoint"]=ep-startTime
-                self.dvcfg_dict[parameter_name]["startTime"]=startTime
-                self.dvcfg_dict[parameter_name]["endTime"]=ep+self.start_blank
+                self.dvcfg_dict[item_name]["updateTime"]=time.strftime('%Y-%m-%d %H:%M:%S',tm)
+                self.dvcfg_dict[item_name]["startPoint"]=self.start_blank
+                self.dvcfg_dict[item_name]["endPoint"]=ep-startTime
+                self.dvcfg_dict[item_name]["startTime"]=startTime
+                self.dvcfg_dict[item_name]["endTime"]=ep+self.start_blank
             else:
-                print("타입 오류: 이 파라미터는 INDIE가 아닙니다.\nType Error: The parameter's type is not INDIE.")
+                print("타입 오류: 이 발음은 INDIE가 아닙니다.\nType Error: The item's type is not INDIE.")
         else:
-            print('파라미터 오류: 파라미터가 존재하지 않습니다.\nParameter Error: Parameter is not exist.')
+            print('항목 오류: 입력한 발음에 해당하는 항목이 존재하지 않습니다.\nItem Error: Item is not exist.')
 
 
 
-# -------------------- 파라미터 수정 | Edit Parameters --------------------
+# -------------------- 항목 수정 | Edit item --------------------
 
     # 기호, 피치 변경 | Rename symbol and pitch --------------------
     def rename(self,original_symbol,original_pitch,new_symbol,new_pitch):
-        original_parameter="{0}->{1}".format(original_pitch,original_symbol)
-        new_parameter="{0}->{1}".format(new_pitch,new_symbol)
-        self.dvcfg_dict[new_parameter]=self.dvcfg_dict[original_parameter].copy()
-        del(self.dvcfg_dict[original_parameter])
-        self.dvcfg_dict[new_parameter]["symbol"]=new_symbol
-        self.dvcfg_dict[new_parameter]["pitch"]=new_pitch
-        self.dvcfg_dict[new_parameter]["updateTime"]=time.strftime('%Y-%m-%d %H:%M:%S',tm)
+        original_item="{0}->{1}".format(original_pitch,original_symbol)
+        new_item="{0}->{1}".format(new_pitch,new_symbol)
+        self.dvcfg_dict[new_item]=self.dvcfg_dict[original_item].copy()
+        del(self.dvcfg_dict[original_item])
+        self.dvcfg_dict[new_item]["symbol"]=new_symbol
+        self.dvcfg_dict[new_item]["pitch"]=new_pitch
+        self.dvcfg_dict[new_item]["updateTime"]=time.strftime('%Y-%m-%d %H:%M:%S',tm)
 
 
-    # 파라미터 복사 | Copy parameter --------------------
+    # 항목 복사 | Copy item --------------------
     def copy(self,original_symbol,original_pitch,new_symbol,new_pitch):
-        original_parameter="{0}->{1}".format(original_pitch,original_symbol)
-        new_parameter="{0}->{1}".format(new_pitch,new_symbol)
-        self.dvcfg_dict[new_parameter]=self.dvcfg_dict[original_parameter].copy()
-        self.dvcfg_dict[new_parameter]["symbol"]=new_symbol
-        self.dvcfg_dict[new_parameter]["pitch"]=new_pitch
-        self.dvcfg_dict[new_parameter]["updateTime"]=time.strftime('%Y-%m-%d %H:%M:%S',tm)
+        original_item="{0}->{1}".format(original_pitch,original_symbol)
+        new_item="{0}->{1}".format(new_pitch,new_symbol)
+        self.dvcfg_dict[new_item]=self.dvcfg_dict[original_item].copy()
+        self.dvcfg_dict[new_item]["symbol"]=new_symbol
+        self.dvcfg_dict[new_item]["pitch"]=new_pitch
+        self.dvcfg_dict[new_item]["updateTime"]=time.strftime('%Y-%m-%d %H:%M:%S',tm)
 
 
-    # 파라미터 삭제 | Delete parameter --------------------
+    # 항목 삭제 | Delete item --------------------
     def delete(self,symbol,pitch):
         del(self.dvcfg_dict["{0}->{1}".format(pitch,symbol)])
 
@@ -210,10 +210,10 @@ class Dvcfg:
     def replace_pitch(self,original_pitch,new_pitch):
         for line in list(self.dvcfg_dict.keys()):
             if self.dvcfg_dict[line]["pitch"]==original_pitch:
-                new_parameter="{0}->{1}".format(new_pitch,self.dvcfg_dict[line]["symbol"])
-                self.dvcfg_dict[new_parameter]=self.dvcfg_dict[line].copy()
-                self.dvcfg_dict[new_parameter]["pitch"]=new_pitch
-                self.dvcfg_dict[new_parameter]["updateTime"]=time.strftime('%Y-%m-%d %H:%M:%S',tm)
+                new_item="{0}->{1}".format(new_pitch,self.dvcfg_dict[line]["symbol"])
+                self.dvcfg_dict[new_item]=self.dvcfg_dict[line].copy()
+                self.dvcfg_dict[new_item]["pitch"]=new_pitch
+                self.dvcfg_dict[new_item]["updateTime"]=time.strftime('%Y-%m-%d %H:%M:%S',tm)
                 del(self.dvcfg_dict[line])
 
 
@@ -225,24 +225,24 @@ if __name__=='__main__':
     test.load('voice.dvcfg')
     print(test.dvcfg_to_dict())
     
-    test.add_CV("iy.wav","ya","C4",1.0,1.2,1.3,1.5)
-    test.add_VX("iy.wav","i_y","C4",1.0,1.2)
-    test.add_INDIE("iy.wav","aaaa","C4",1.0,1.5)
+    test.add_CV("test.wav","ya","C4",1.0,1.2,1.3,1.5)
+    test.add_VX("test.wav","a_y","C4",1.0,1.2)
+    test.add_INDIE("test.wav","test","C4",1.0,1.5)
 
-    test.copy("ya","C4","ye","C4")
-    test.copy("i_y","C4","i_yy","C4")
-    test.copy("aaaa","C4","bbbb","C4")
+    test.copy("ya","C4","ya2","F4")
+    test.copy("a_y","C4","a_y2","F4")
+    test.copy("test","C4","test2","F4")
 
-    test.rename("ye","C4","yeo","C#4")
-    test.rename("i_yy","C4","i_yyy","C#4")
-    test.rename("bbbb","C4","cccc","C#4")
+    test.rename("ya","C4","ya3","C#4")
+    test.rename("a_y","C4","a_y3","C#4")
+    test.rename("test","C4","test3","C#4")
 
-    test.delete('a','F4')
+    test.delete('test2','F4')
 
-    test.edit_CV("yeo","C#4",2.0,2.2,2.3,2.5)
-    test.edit_VX("i_yyy","C#4",2.0,2.2)
-    test.edit_INDIE("cccc","C#4",3.0,3.5)
+    test.edit_CV("ya3","C#4",2.0,2.2,2.3,2.5)
+    test.edit_VX("a_y3","C#4",2.0,2.2)
+    test.edit_INDIE("test3","C#4",3.0,3.5)
 
     test.replace_pitch('F4','E4')
 
-    test.save('voice2.dvcfg')
+    test.save()

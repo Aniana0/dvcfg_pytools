@@ -18,4 +18,4 @@ dvcfg_file.add_INDIE('voice/breath.wav','breath','C#4',0.55,1.07)
 
 
 # 파일 저장 | Save voice.dvcfg
-dvcfg_file.save('')
+dvcfg_file.save()
