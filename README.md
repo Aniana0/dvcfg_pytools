@@ -53,7 +53,7 @@ dvcfg_file.add_INDIE('voice/breath.wav','breath','C#4',0.55,1.07)
 
 dvcfg_file.save('')
 ```   
-자세한 예시는 samples 폴더를 참고해주세요.
+자세한 예시는 [이 파일](https://drive.google.com/file/d/1ZvzIF6MUlEn1IRVJseAzOdWzQ1XJaEmL/view?usp=sharing)을 참고해주세요.
 
 ## 기본 메소드
 Voice Config에 있는 기능들을 구현한 메소드입니다.
