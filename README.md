@@ -16,7 +16,15 @@ DeepVocal ToolBox의 'Voice Config'에서 할 수 있는 작업을 파이썬에�
 
 
 ## 설치
-(준비중)
+* [여기(클릭)](https://github.com/Aniana0/dvcfg_pytools/raw/main/install/dvcfg_pytools-1.0.0.tar.gz)에서 배포 파일을 다운로드합니다.
+* 이후 다운로드한 파일이 있는 위치에서 아래와 같이 명령어를 실행합니다.
+```
+pip install dvcfg_pytools-1.0.0.tar.gz
+```
+또는
+```
+python -m pip install dvcfg_pytools-1.0.0.tar.gz
+```
 
 
 ## 사용법   
@@ -45,7 +53,7 @@ dvcfg_file.add_INDIE('voice/breath.wav','breath','C#4',0.55,1.07)
 
 dvcfg_file.save('')
 ```   
-
+자세한 예시는 samples 폴더를 참고해주세요.
 
 ## 기본 메소드
 Voice Config에 있는 기능들을 구현한 메소드입니다.
