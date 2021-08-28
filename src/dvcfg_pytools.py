@@ -1,6 +1,6 @@
 # -*- author: 아니아나(Aniana0) aniana0gm@gmail.com -*-
 # -*- coding : utf-8 -*-
-# -*- latest update date(KST) : 2021-08-28 00:12 -*-
+# -*- latest update date(KST) : 2021-08-28 15:31 -*-
  
 import json
 import time
@@ -208,13 +208,13 @@ class Dvcfg:
 
     # 피치 일괄 변경 | Replace all pitch -------------------------
     def replace_pitch(self,original_pitch,new_pitch):
-        for line in list(self.dvcfg_dict.keys()):
-            if self.dvcfg_dict[line]["pitch"]==original_pitch:
-                new_item="{0}->{1}".format(new_pitch,self.dvcfg_dict[line]["symbol"])
-                self.dvcfg_dict[new_item]=self.dvcfg_dict[line].copy()
+        for item,data in list(self.dvcfg_dict.items()):
+            if data["pitch"]==original_pitch:
+                new_item="{0}->{1}".format(new_pitch,data["symbol"])
+                self.dvcfg_dict[new_item]=data.copy()
                 self.dvcfg_dict[new_item]["pitch"]=new_pitch
                 self.dvcfg_dict[new_item]["updateTime"]=time.strftime('%Y-%m-%d %H:%M:%S',tm)
-                del(self.dvcfg_dict[line])
+                del(self.dvcfg_dict[item])
 
 
 
