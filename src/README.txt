@@ -6,7 +6,7 @@ dvcfg_pytools
 voice.dvcfg를 파이썬에서 편하게 수정하기 위해 만든 모듈입니다.
 
 :: 정보 ::
-버전 - 1.0.0
+버전 - 1.1.0
 제작 - 아니아나(Aniana0)
 이메일 - aniana0gm@gmail.com
 
@@ -22,7 +22,7 @@ voice.dvcfg를 파이썬에서 편하게 수정하기 위해 만든 모듈입니
 This is a Python module designed for easy editing of voice.dvcfg in Python.
 
 :: Information ::
-Version - 1.0.0
+Version - 1.1.0
 Author - Aniana0
 E-mail - aniana0gm@gmail.com
 
