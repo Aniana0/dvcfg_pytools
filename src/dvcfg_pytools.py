@@ -51,7 +51,7 @@ class Dvcfg:
 
     # .dvcfg 불러오기 | Load .dvcfg --------------------
     
-    def load(self,file_name):
+    def load(self,file_name='voice.dvcfg'):
         
         if os.path.isfile(file_name):
 
