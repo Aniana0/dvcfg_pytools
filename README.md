@@ -17,7 +17,7 @@ DeepVocal ToolBox의 'Voice Config'에서 할 수 있는 작업을 파이썬에�
 
 
 ## 설치
-* eleases 페이지나 [여기(최신 버전)](https://github.com/Aniana0/dvcfg_pytools/releases/download/1.0.0/dvcfg_pytools-1.0.0.tar.gz)에서 배포 파일을 다운로드합니다.
+* Releases 페이지나 [여기(최신 버전)](https://github.com/Aniana0/dvcfg_pytools/releases/download/1.0.0/dvcfg_pytools-1.0.0.tar.gz)에서 배포 파일을 다운로드합니다.
 * 이후 다운로드한 파일이 있는 위치에서 아래와 같이 명령어를 실행합니다.
 ```
 pip install dvcfg_pytools-1.0.0.tar.gz
