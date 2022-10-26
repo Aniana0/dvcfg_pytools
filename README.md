@@ -182,3 +182,6 @@ Voice Config에 없는 모듈 오리지널 기능의 메소드입니다.
 
 ## 업데이트 내역
 [여기를 참고해주세요](https://github.com/Aniana0/dvcfg_pytools/releases)
+
+## 수정해야할 버그 메모
+* 마커값 구하는 함수에 self. 추가하기
